@@ -39,10 +39,7 @@ var pumpCmd = &cobra.Command{
 			return err
 		}
 		defer func() { _ = target.Close() }()
-
-		limiter := getLimiter()
-
-		p := pipe.New(source, target, limiter, bufferSize)
+		p := pipe.New(source, target, bufferSize)
 
 		return p.Pump()
 	},
